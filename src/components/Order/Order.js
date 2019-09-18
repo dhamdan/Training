@@ -12,6 +12,7 @@ const Order = (props) => {
         });
     }
 
+
     const ingridientOutput = ingridients.map(ig => {
         return <span
             style={ {
@@ -26,6 +27,7 @@ const Order = (props) => {
 
     return (
         <div className='Order'>
+            <p>Name: {props.orderData.name}</p>
             <p>Ingridients: { ingridientOutput }</p>
             <p>Price: <strong>$ { Number.parseFloat(props.price).toFixed(2) }</strong></p>
         </div>
