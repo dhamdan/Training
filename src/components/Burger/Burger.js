@@ -5,9 +5,9 @@ import  './Burger.css';
 
 const Burger = (props) => {
 
-    let transformedIngredients = Object.keys(props.ingredients)
+    let transformedIngredients = Object.keys(props.ingridients)
         .map(k => {
-            return [...Array(props.ingredients[k])].map((_, i) => {
+            return [...Array(props.ingridients[k])].map((_, i) => {
                 return <BurgerIngridient key={k + i} type={k}/>
             });
         }).reduce((arr, el) => {

@@ -1,36 +1,34 @@
 import React from 'react';
-import  './BuildControls.css';
 import BuildControl from './BuildControl/BuildControl';
 
+import './BuildControls.css';
 
 const controls = [
-    {label: 'Salad', type: 'salad'},
-    {label: 'Bacon', type: 'bacon'},
-    {label: 'Cheese', type: 'cheese'},
-    {label: 'Meat', type: 'meat'}
+    { label: 'Salad', type: 'salad' },
+    { label: 'Bacon', type: 'bacon' },
+    { label: 'Cheese', type: 'cheese' },
+    { label: 'Meat', type: 'meat' }
 ];
 
-const BuildControls = (props) => (
-
+const buildControls = ( props ) => (
     <div className='BuildControls'>
-        <p>Current Price: <strong>{props.totalPrice.toFixed(2)}</strong></p>
-
+        <p>Current Price: <strong>{ props.price.toFixed(2) }</strong></p>
         {controls.map(ctrl => (
             <BuildControl
                 key={ ctrl.label }
                 label={ ctrl.label }
-                type={ctrl.type}
-                added={props.ingredientAdded}
-                removed={ props.ingredientRemoved}
-                disabled={props.disabled[ctrl.type]}
+                added= {() => props.ingridientsAdded( ctrl.type )}
+                removed={() => props.ingridientsRemoved( ctrl.type )}
+                disabled={ props.disabled[ctrl.type]}
             />
         ))}
 
-        <button className="OrderButton" disabled={!props.purchaseable} onClick={props.purchasing}>
-            ORDER NOW
-        </button>
+        <button
+            className='OrderButton'
+            disabled={ !props.purchasable }
+            onClick={ props.ordered }
+        >{ props.isAuth ? 'ORDER': 'SIGN UP TO ORDER' }</button>
     </div>
-)
+);
 
-
-export default BuildControls;
+export default buildControls;
